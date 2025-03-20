@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = '/api/chat'
+const baseUrl = 'https://dating-app-backend-tcd2.onrender.com/api/chat'
 
 const getUsernames = () => {
 	const request = axios.post(`${baseUrl}/usernames`)

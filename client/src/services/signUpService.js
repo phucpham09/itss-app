@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = '/api'
+const baseUrl = 'https://dating-app-backend-tcd2.onrender.com/api'
 
 const createUser = signedUpUser => {
 	const request = axios.post(`${baseUrl}/signup`, signedUpUser)

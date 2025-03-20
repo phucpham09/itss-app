@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = '/api/browsing'
+const baseUrl = 'https://dating-app-backend-tcd2.onrender.com/api/browsing'
 
 const getUsers = searchCriteria => {
 	const request = axios.post(`${baseUrl}/sorted`, searchCriteria)

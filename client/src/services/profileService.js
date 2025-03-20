@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = '/api/profile'
+const baseUrl = 'https://dating-app-backend-tcd2.onrender.com/api/profile'
 
 const setUpProfile = ProfileSettings => {
 	const request = axios.post(`${baseUrl}/setup`, ProfileSettings)
