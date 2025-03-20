@@ -31,7 +31,7 @@ const { Pool } = require('pg')
 // })
 
 const pool = new Pool({
-	connectionString: process.env.DATABASE_URL, 
+	connectionString: process.env.DATABASE_URL + '?sslmode=require', 
   ssl: {
     rejectUnauthorized: false,
   },
@@ -76,7 +76,7 @@ require('./routes/browsing.js')(app, pool, transporter, socketIO)
 require('./routes/chat.js')(pool, socketIO)
 require('./routes/chat_api.js')(app, pool)
 
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 10000
 
 http.listen(PORT, () => {
 	console.log(`Server listening on ${PORT}`)
