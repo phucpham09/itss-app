@@ -17,7 +17,7 @@ const http = require('http').Server(app)
 
 const socketIO = require('socket.io')(http, {
 	cors: {
-		origin: "http://localhost:3000"
+		origin: ["http://localhost:3000", "https://itss-app-frontend.onrender.com"]
 	}
 });
 
