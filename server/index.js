@@ -77,7 +77,9 @@ require('./routes/chat.js')(pool, socketIO)
 require('./routes/chat_api.js')(app, pool)
 
 const PORT = process.env.PORT || 10000
-
+app.get('/', (req, res) => {
+	res.send('Hello')
+})
 http.listen(PORT, () => {
 	console.log(`Server listening on ${PORT}`)
 })
