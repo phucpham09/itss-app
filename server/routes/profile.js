@@ -1,5 +1,6 @@
 module.exports = (app, pool, upload, fs, path, bcrypt) => {
-	app.post('/api/profile/setup', async (request, response) => {
+	const baseUrl = process.env.BASE_URL
+	app.post(`${baseUrl}/api/profile/setup`, async (request, response) => {
 		var sess = request.session
 		const { gender, age, location, gps, sexual_pref, biography, tags } = request.body
 
@@ -63,7 +64,7 @@ module.exports = (app, pool, upload, fs, path, bcrypt) => {
 		}
 	})
 
-	app.post('/api/profile/editsettings', async (request, response) => {
+	app.post(`${baseUrl}/api/profile/editsettings`, async (request, response) => {
 		var sess = request.session
 		const { username, firstname, lastname, email, gender, age,
 			location, gps_lat, gps_lon, sexual_pref, biography, tags } = request.body
@@ -148,7 +149,7 @@ module.exports = (app, pool, upload, fs, path, bcrypt) => {
 		}
 	})
 
-	app.post('/api/profile/changepassword', async (request, response) => {
+	app.post(`${baseUrl}/api/profile/changepassword`, async (request, response) => {
 		const sess = request.session
 		const { oldPassword, newPassword, confirmPassword } = request.body
 
@@ -177,7 +178,7 @@ module.exports = (app, pool, upload, fs, path, bcrypt) => {
 		}
 	})
 
-	app.get('/api/profile', async (request, response) => {
+	app.get(`${baseUrl}/api/profile`, async (request, response) => {
 		const sess = request.session
 
 		if (sess.userid) {
@@ -240,7 +241,7 @@ module.exports = (app, pool, upload, fs, path, bcrypt) => {
 		}
 	})
 
-	app.post('/api/profile/setprofilepic', upload.single('file'), async (request, response) => {
+	app.post(`${baseUrl}/api/profile/setprofilepic`, upload.single('file'), async (request, response) => {
 		const sess = request.session
 		const image = 'http://localhost:3000/images/' + request.file.filename
 
@@ -282,7 +283,7 @@ module.exports = (app, pool, upload, fs, path, bcrypt) => {
 		}
 	})
 
-	app.post('/api/profile/imageupload', upload.single('file'), async (request, response) => {
+	app.post(`${baseUrl}/api/profile/imageupload`, upload.single('file'), async (request, response) => {
 		const sess = request.session
 		const image = 'http://localhost:3000/images/' + request.file.filename
 
@@ -310,7 +311,7 @@ module.exports = (app, pool, upload, fs, path, bcrypt) => {
 		}
 	})
 
-	app.delete('/api/profile/deletepicture/:id', async (request, response) => {
+	app.delete(`${baseUrl}/api/profile/deletepicture/:id`, async (request, response) => {
 		const sess = request.session
 
 		if (sess.userid) {
@@ -341,7 +342,7 @@ module.exports = (app, pool, upload, fs, path, bcrypt) => {
 		}
 	})
 
-	app.get('/api/profile/notifications', async (request, response) => {
+	app.get(`${baseUrl}/api/profile/notifications`, async (request, response) => {
 		const sess = request.session
 
 		if (sess.userid) {
@@ -363,7 +364,7 @@ module.exports = (app, pool, upload, fs, path, bcrypt) => {
 		}
 	})
 
-	app.delete('/api/profile/notifications', (request, response) => {
+	app.delete(`${baseUrl}/api/profile/notifications`, (request, response) => {
 		const sess = request.session
 
 		if (sess.userid) {
@@ -378,7 +379,7 @@ module.exports = (app, pool, upload, fs, path, bcrypt) => {
 		}
 	})
 
-	app.delete('/api/profile/notification/:id', (request, response) => {
+	app.delete(`${baseUrl}/api/profile/notification/:id`, (request, response) => {
 		const sess = request.session
 
 		if (sess.userid) {
@@ -394,7 +395,7 @@ module.exports = (app, pool, upload, fs, path, bcrypt) => {
 		}
 	})
 
-	app.patch('/api/profile/readnotification/:id', (request, response) => {
+	app.patch(`${baseUrl}/api/profile/readnotification/:id`, (request, response) => {
 		const sess = request.session
 
 		if (sess.userid) {
@@ -410,7 +411,7 @@ module.exports = (app, pool, upload, fs, path, bcrypt) => {
 		}
 	})
 
-	app.patch('/api/profile/readnotifications', (request, response) => {
+	app.patch(`${baseUrl}/api/profile/readnotifications`, (request, response) => {
 		const sess = request.session
 
 		if (sess.userid) {
@@ -425,7 +426,7 @@ module.exports = (app, pool, upload, fs, path, bcrypt) => {
 		}
 	})
 
-	app.delete('/api/profile/deleteuser', (request, response) => {
+	app.delete(`${baseUrl}/api/profile/deleteuser`, (request, response) => {
 		const sess = request.session
 
 		if (sess.userid) {

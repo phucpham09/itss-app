@@ -1,5 +1,6 @@
 module.exports = (app, pool) => {
-	app.get('/api/chat/chat_connections', async (request, response) => {
+	const baseUrl = process.env.BASE_URL
+	app.get(`${baseUrl}/api/chat/chat_connections`, async (request, response) => {
 		const sess = request.session
 
 		try {
@@ -43,7 +44,7 @@ module.exports = (app, pool) => {
 		}
 	})
 
-	app.post('/api/chat/room_messages', async (request, response) => {
+	app.post(`${baseUrl}/api/chat/room_messages`, async (request, response) => {
 		const sess = request.session
 		const connection_id = request.body.room
 		try {
@@ -62,7 +63,7 @@ module.exports = (app, pool) => {
 		}
 	})
 
-	app.post('/api/chat/check_username', async (request, response) => {
+	app.post(`${baseUrl}/api/chat/check_username`, async (request, response) => {
 		const sess = request.session
 		const username = request.body.username
 		if (sess.username) {
@@ -76,7 +77,7 @@ module.exports = (app, pool) => {
 		}
 	})
 
-	app.post('/api/chat/usernames', async (request, response) => {
+	app.post(`${baseUrl}/api/chat/usernames`, async (request, response) => {
 		const body = request.body
 		const sess = request.session
 

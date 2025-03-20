@@ -1,4 +1,5 @@
 module.exports = function (app, pool, bcrypt, transporter) {
+	const baseUrl = process.env.BASE_URL
 	checkSignUpData = (body) => {
 		if (body.username.length < 4 || body.username.length > 25)
 			return ("Username has to be between 4 and 25 characters.")
@@ -45,7 +46,7 @@ module.exports = function (app, pool, bcrypt, transporter) {
 		)
 	}
 
-	app.post('/api/signup', async (request, response) => {
+	app.post(`${baseUrl}/api/signup`, async (request, response) => {
 		const checkResult = await checkSignUpData(request.body)
 		if (checkResult === true) {
 			const { username, firstname, lastname, email, password } = request.body
@@ -117,7 +118,7 @@ module.exports = function (app, pool, bcrypt, transporter) {
 		}
 	})
 
-	app.post('/api/signup/verifyuser', (request, response) => {
+	app.post(`${baseUrl}/api/signup/verifyuser`, (request, response) => {
 		const { username, code } = request.body
 
 		const checkCode = async () => {

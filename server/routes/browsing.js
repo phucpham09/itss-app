@@ -1,5 +1,5 @@
 module.exports = (app, pool, transporter, socketIO) => {
-
+	const baseUrl = process.env.BASE_URL
 	const sendNotification = async (userid, notification_id, notification, target_id, redirect_address) => {
 		if (userid) {
 			var sql = `SELECT picture_data
@@ -20,7 +20,7 @@ module.exports = (app, pool, transporter, socketIO) => {
 		}
 	}
 
-	app.post('/api/browsing/sorted', async (request, response) => {
+	app.post(`${baseUrl}/api/browsing/sorted`, async (request, response) => {
 		const body = request.body
 		const sess = request.session
 
@@ -62,7 +62,7 @@ module.exports = (app, pool, transporter, socketIO) => {
 		}
 	})
 
-	app.post('/api/browsing/likeuser/:id', async (request, response) => {
+	app.post(`${baseUrl}/api/browsing/likeuser/:id`, async (request, response) => {
 		const sess = request.session
 
 		if (sess.userid) {
@@ -135,7 +135,7 @@ module.exports = (app, pool, transporter, socketIO) => {
 		}
 	})
 
-	app.post('/api/browsing/unlikeuser/:id', async (request, response) => {
+	app.post(`${baseUrl}/api/browsing/unlikeuser/:id`, async (request, response) => {
 		const sess = request.session
 
 		if (sess.userid) {
@@ -182,7 +182,7 @@ module.exports = (app, pool, transporter, socketIO) => {
 		}
 	})
 
-	app.post('/api/browsing/blockuser/:id', async (request, response) => {
+	app.post(`${baseUrl}/api/browsing/blockuser/:id`, async (request, response) => {
 		const sess = request.session
 
 		if (sess.userid) {
@@ -226,7 +226,7 @@ module.exports = (app, pool, transporter, socketIO) => {
 		}
 	})
 
-	app.post('/api/browsing/reportuser/:id', async (request, response) => {
+	app.post(`${baseUrl}/api/browsing/reportuser/:id`, async (request, response) => {
 		const sess = request.session
 
 		if (sess.userid) {
@@ -279,7 +279,7 @@ module.exports = (app, pool, transporter, socketIO) => {
 		}
 	})
 
-	app.get('/api/browsing/userlists', async (request, response) => {
+	app.get(`${baseUrl}/api/browsing/userlists`, async (request, response) => {
 		const sess = request.session
 		if (sess.userid) {
 			var sql = `SELECT target_id FROM likes WHERE liker_id = $1`
@@ -309,7 +309,7 @@ module.exports = (app, pool, transporter, socketIO) => {
 		}
 	})
 
-	app.get('/api/browsing/profile/:id', async (request, response) => {
+	app.get(`${baseUrl}/api/browsing/profile/:id`, async (request, response) => {
 		const sess = request.session
 
 		if (sess.userid) {
@@ -362,7 +362,7 @@ module.exports = (app, pool, transporter, socketIO) => {
 		}
 	})
 
-	app.get('/api/browsing/tags', async (request, response) => {
+	app.get(`${baseUrl}/api/browsing/tags`, async (request, response) => {
 		var sql = "SELECT * FROM tags ORDER BY tag_content"
 		const { rows } = await pool.query(sql)
 

@@ -1,6 +1,6 @@
 module.exports = function (app, pool, bcrypt, transporter) {
-
-	app.post('/api/resetpassword', (request, response) => {
+	const baseUrl = process.env.BASE_URL
+	app.post(`${baseUrl}/api/resetpassword`, (request, response) => {
 		const { resetvalue } = request.body
 
 		const findUserAccount = async () => {
@@ -59,7 +59,7 @@ module.exports = function (app, pool, bcrypt, transporter) {
 			.catch(error => response.send(error))
 	});
 
-	app.post('/api/setnewpassword', async (request, response) => {
+	app.post(`${baseUrl}/api/setnewpassword`, async (request, response) => {
 		const { user, code, password, confirmPassword } = request.body
 
 		if (password !== confirmPassword) {

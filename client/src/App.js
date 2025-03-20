@@ -36,7 +36,7 @@ const App = () => {
 	const user = useSelector(state => state.user)
 
 	useEffect(() => {
-		setSocket(socketIO('http://localhost:3001'))
+		setSocket(socketIO('https://dating-app-backend-tcd2.onrender.com'))
 	}, [])
 
 	useEffect(() => {
