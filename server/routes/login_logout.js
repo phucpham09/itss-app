@@ -1,6 +1,5 @@
 module.exports = function (app, pool, bcrypt) {
-	const baseUrl = process.env.BASE_URL
-	app.post(`${baseUrl}/api/login`, (request, response) => {
+	app.post(`/api/login`, (request, response) => {
 		const { username, password } = request.body
 
 		const verifyUser = async () => {
@@ -34,7 +33,7 @@ module.exports = function (app, pool, bcrypt) {
 
 	})
 
-	app.get(`${baseUrl}/api/login`, (request, response) => {
+	app.get(`/api/login`, (request, response) => {
 		var sess = request.session
 		if (sess.username && sess.userid)
 			response.send({ name: sess.username, id: sess.userid })
@@ -42,7 +41,7 @@ module.exports = function (app, pool, bcrypt) {
 			response.send('')
 	})
 
-	app.get(`${baseUrl}/api/logout`, (request, response) => {
+	app.get(`/api/logout`, (request, response) => {
 		request.session.destroy((err) => {
 			if (err) {
 				return console.log(err)
