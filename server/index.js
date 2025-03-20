@@ -10,6 +10,7 @@ const multer = require('multer') // for image upload and storage
 const fs = require('fs'); // for base64 conversion of images
 const path = require('path')
 app.use(cors())
+app.use(express.json());
 app.use(express.static('build')) // express checks if the 'build' directory contains the requested file
 app.use('/images', express.static('./images')) // to serve static files to path /images, from images folder
 app.use(session({ secret: 'matchac2r2p6', saveUninitialized: true, resave: true }));

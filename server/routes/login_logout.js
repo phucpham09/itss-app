@@ -1,5 +1,5 @@
 module.exports = function (app, pool, bcrypt) {
-	var baseUrl = process.env.BASE_URL
+	const baseUrl = process.env.BASE_URL
 	app.post(`${baseUrl}/api/login`, (request, response) => {
 		const { username, password } = request.body
 
